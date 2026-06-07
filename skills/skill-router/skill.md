@@ -13,6 +13,20 @@ Analyze the request, confirm what needs to happen, choose the right workflow, an
 Do NOT invoke a workflow skill, write code, perform a review, debug a failure, or provide the final answer until task analysis is complete and a workflow has been selected.
 </HARD-GATE>
 
+Anti-Pattern: Assuming The Solution Before Understanding The Task
+
+Do not skip context exploration or understanding simply because the task appears simple.
+
+Simple tasks often hide assumptions that can lead to incorrect execution.
+
+The amount of analysis should match the complexity of the task:
+
+- Trivial tasks may proceed directly.
+- Moderate tasks may require clarification.
+- Complex or high-risk tasks should go through a design-oriented workflow.
+
+Always ensure the request is understood before execution.
+
 ## Overview
 
 The router follows this sequence:
@@ -87,7 +101,15 @@ digraph workflow_router {
 }
 ```
 
-## Task Analysis
+## The Process
+
+**Explore Context:**
+
+- Check the user's request, repository instructions, available files, diffs, errors, logs, or prior context before deciding the route.
+- Use only enough exploration to classify the task and understand the user's goal; do not turn routing into implementation.
+- If the request spans multiple unrelated goals, flag that early and route the primary task or ask the user which task to handle first.
+
+**Task Analysis:**
 
 Task analysis must be explicit enough that the selected route is defensible.
 
@@ -140,6 +162,10 @@ Separate missing information into:
 - **Non-blocking** - can proceed with a stated assumption
 
 Ask only for blocking information. Do not use clarification as a substitute for inspecting available context.
+
+**Confirm Understanding:**
+
+Before routing, say back what the user wants, the important constraints, and any assumptions. Keep this to 2-3 short sentences. Confirm the task outcome, not the implementation approach.
 
 ## Workflow Selection
 
@@ -206,17 +232,6 @@ Ask a clarifying question only when:
 Do not ask when a reasonable assumption is safe and easy to state.
 
 Ask concise questions. Prefer one question at a time when possible.
-
-## Confirm Understanding
-
-Before routing, briefly confirm:
-
-- The intended outcome
-- The primary constraints
-- The selected workflow
-- Any assumptions
-
-For simple tasks, this can be one sentence. For risky or broad tasks, use a short structured summary.
 
 ## Examples
 
