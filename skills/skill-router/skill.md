@@ -116,7 +116,7 @@ Task analysis must be explicit enough that the selected route is defensible.
 Use this structure:
 
 ```markdown
-Task Type: [explanation | implementation | bug fix | review | refactor | research | mixed]
+Task Type: [explanation | implementation | bug fix | review | refactor | mixed]
 Intent: [what outcome the user wants]
 Complexity: [low | medium | high] - [why]
 Risk: [low | medium | high] - [what could go wrong]
