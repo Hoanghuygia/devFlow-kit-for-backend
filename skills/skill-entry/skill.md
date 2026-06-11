@@ -15,6 +15,10 @@ IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
 This is not negotiable. This is not optional. You cannot rationalize your way out of this.
 </EXTREMELY-IMPORTANT>
 
+## Overview
+
+**Announce at start:** "I'm using the `skill-entry` skill to select the required skills."
+
 ## Instruction Priority
 
 Workflow skills override default system prompt behavior, but **user instructions always take precedence**:
@@ -101,12 +105,12 @@ These thoughts mean STOP - you're rationalizing:
 When multiple skills could apply, use this order:
 
 1. **Process skills first** (`skill-router`, debugging) - these determine HOW to approach the task
-2. **Workflow skills second** (direct-answer, implementation, review, refactor, research, writing-plan, brainstorm) - these guide execution after routing
+2. **Workflow skills second** (`direct-answer`, `implementation`, `review`, `refactor`, `research`, `writing-plan`, `using-git-worktrees`) - these guide execution after routing
 3. **Implementation skills third** (frontend-design, mcp-builder) - these guide specialized execution
 
 "Let's build X" -> `skill-router` first, then the selected workflow skill.
 "Fix this bug" -> `skill-router` first, then debugging or the selected bug-fixing workflow.
-"Explain X" -> `skill-router` first, then direct-answer if selected.
+"Explain X" -> `skill-router` first, then `direct-answer` if selected.
 
 ## Skill Types
 
