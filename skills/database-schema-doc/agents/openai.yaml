@@ -1,0 +1,4 @@
+interface:
+  display_name: "Database Schema Doc"
+  short_description: "Create SCHEMA.md from migrations or a live database"
+  default_prompt: "Use $database-schema-doc to generate SCHEMA.md for the current project."
