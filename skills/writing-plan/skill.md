@@ -7,11 +7,11 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write comprehensive implementation plans assuming the engineer has zero context for the codebase. Document which files to touch, what behavior to implement, which tests or checks to run, and what documentation must stay aligned. Give them the whole plan as bite-sized tasks. DRY. YAGNI. Use TDD for behavior-changing work.
 
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
-**Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+**Announce at start:** "I'm using the `writing-plans` skill to create the implementation plan."
 
 **Context:** If working in an isolated worktree, it should have been created via the `using-git-worktrees` skill at execution time.
 
@@ -20,7 +20,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Scope Check
 
-If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during brainstorming. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
+If the spec covers multiple independent subsystems, it should have been broken into sub-project specs during `implementation`. If it wasn't, suggest breaking this into separate plans — one per subsystem. Each plan should produce working, testable software on its own.
 
 ## File Structure
 
@@ -35,12 +35,15 @@ This structure informs the task decomposition. Each task should produce self-con
 
 ## Bite-Sized Task Granularity
 
-**Each step is one action (2-5 minutes):**
+**Each step is one action (2-5 minutes).**
+
+For behavior-changing work:
 - "Write the failing test" - step
 - "Run it to make sure it fails" - step
 - "Implement the minimal code to make the test pass" - step
 - "Run the tests and make sure they pass" - step
-- "Commit" - step
+
+For non-behavioral work, replace the failing-test steps with the appropriate contract, syntax, formatting, build, or focused inspection command.
 
 ## Plan Document Header
 
@@ -49,7 +52,7 @@ This structure informs the task decomposition. Each task should produce self-con
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **Execution owner:** Return this plan to the `implementation` workflow for task-by-task execution. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -95,12 +98,6 @@ def function(input):
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
 
-- [ ] **Step 5: Commit**
-
-```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
-```
 ````
 
 ## No Placeholders
@@ -117,7 +114,9 @@ Every step must contain the actual content an engineer needs. These are **plan f
 - Exact file paths always
 - Complete code in every step — if a step changes code, show the code
 - Exact commands with expected output
-- DRY, YAGNI, TDD, frequent commits
+- DRY and YAGNI
+- TDD for behavior-changing work
+- Scope-appropriate verification for non-behavioral work
 
 ## Self-Review
 
@@ -133,20 +132,10 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 ## Execution Handoff
 
-After saving the plan, offer execution choice:
+After saving and self-reviewing the plan:
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+1. Report the plan path.
+2. Return the completed plan to the owning `implementation` workflow.
+3. Let `implementation` choose the execution mechanism required by its complexity path and the active platform.
 
-**1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
-
-**2. Inline Execution** - Execute tasks in this session using executing-plans, batch execution with checkpoints
-
-**Which approach?"**
-
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use subagent-driven-development
-- Fresh subagent per task + two-stage review
-
-**If Inline Execution chosen:**
-- **REQUIRED SUB-SKILL:** Use executing-plans
-- Batch execution with checkpoints for review
+Do not replace the owning workflow with a separate execution workflow. `implementation` remains responsible for scope control, spec alignment, verification, review, implementation notes, and Summary Change.

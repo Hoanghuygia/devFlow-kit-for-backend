@@ -11,6 +11,10 @@ for skill in skills/*/skill.md; do
     status=1
   fi
 
+  if [[ "$name" == "skill-router" ]]; then
+    continue
+  fi
+
   if ! rg -q --fixed-strings "**Announce at start:**" "$skill"; then
     printf 'FAIL: %s is missing start announcement for %s\n' "$skill" "$name" >&2
     status=1

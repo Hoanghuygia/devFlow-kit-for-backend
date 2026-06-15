@@ -71,6 +71,8 @@ Reason: [one short sentence explaining why this workflow fits]
 Outcome: [desired result]
 Constraints: [user and repository constraints]
 Assumptions: [none | stated assumptions]
+Complexity: [low | medium | high]
+Risk: [low | medium | high]
 ```
 
 Invoke or follow the selected workflow skill. If the workflow is not implemented yet, stop at the placeholder boundary and explain that the workflow is a future placeholder.

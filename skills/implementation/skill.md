@@ -33,7 +33,7 @@ After completing exactly one complexity path:
 
 1. Implement only the approved task scope.
 2. Apply TDD only to behavior-changing work.
-3. Update related specs.
+3. Update all affected specifications before completion.
 4. Record genuine non-blocking uncertainty when present.
 5. Verify with fresh project-appropriate checks.
 6. For medium and high complexity, invoke `code-review`.
@@ -49,8 +49,8 @@ Modify only files related to the requested task. Do not fix unrelated errors or 
 
 ## Medium Complexity
 
-1. Write or update the feature spec.
-2. Self-review the spec.
+1. **REQUIRED SUB-SKILL:** Use `spec-writer` to write or update the authoritative feature specifications.
+2. Confirm the `spec-writer` consistency checks passed.
 3. **REQUIRED SUB-SKILL:** Use `writing-plan`.
 4. Execute Common Execution.
 
@@ -63,8 +63,8 @@ Do not create a worktree by default for medium complexity. An explicit user or r
 3. Ask: User approves the design?
 4. If no or changes are requested: Revise and present the design again.
 5. Continue only after explicit approval.
-6. Write or update the feature spec.
-7. Self-review the spec.
+6. **REQUIRED SUB-SKILL:** Use `spec-writer` to write or update the authoritative feature specifications.
+7. Confirm the `spec-writer` consistency checks passed.
 8. **REQUIRED SUB-SKILL:** Use `writing-plan`.
 9. **REQUIRED SUB-SKILL:** Use `using-git-worktrees`.
 10. Execute Common Execution.
@@ -91,21 +91,10 @@ Do not treat silence as approval. If the user rejects the design or requests cha
 
 Medium- and high-complexity work requires an authoritative spec before planning.
 
-- Save a new spec to `docs/specs/YYYY-MM-DD-<feature-name>-design.md` unless the user or repository defines another location.
-- Update an existing authoritative spec instead of creating a duplicate.
-- Describe the intended behavior, constraints, boundaries, error handling, and verification criteria.
-- Keep implementation details out unless they are required constraints.
-
-### Spec Self-Review
-
-Before invoking `writing-plan`, check:
-
-1. **Placeholder Scan** - remove `TBD`, `TODO`, incomplete sections, and vague requirements.
-2. **Internal Consistency** - ensure sections do not contradict each other.
-3. **Ambiguity Check** - make requirements precise when they could be interpreted differently.
-4. **Scope Check** - split work that is too broad for one implementation plan.
-
-Fix findings inline before continuing.
+- Use `spec-writer` as the single owner of feature specification structure and consistency.
+- Do not create a separate dated design spec when the repository uses the `spec-writer` four-file structure.
+- Return to `implementation` after the specification consistency checks pass, then invoke `writing-plan`.
+- If the repository defines another authoritative specification system, follow that repository instruction instead of creating a duplicate.
 
 ## Implementation
 
@@ -175,8 +164,6 @@ Inspection alone is not verification. Do not claim success from expected results
 Medium- and high-complexity work requires review after verification and before Summary Change.
 
 **REQUIRED SUB-SKILL:** Use `code-review`.
-
-The skill is currently a placeholder. Do not invent review behavior. Return to Summary Change and report that code review was unavailable.
 
 ## Summary Change
 
