@@ -3,7 +3,7 @@ set -euo pipefail
 
 implementation="skills/implementation/skill.md"
 router="skills/skill-router/skill.md"
-code_review="skills/code-review/skill.md"
+review_code="skills/review-code/skill.md"
 
 require() {
   local pattern="$1"
@@ -52,16 +52,14 @@ require "docs/implementation-notes/YYYY-MM-DD-<feature-name>.md" "$implementatio
 require "Do not create an empty implementation-note file." "$implementation" "conditional note creation is missing"
 require "stop and ask the user" "$implementation" "blocking uncertainty rule is missing"
 require "## Verify Before Completion" "$implementation" "verification gate is missing"
-require "**REQUIRED SUB-SKILL:** Use \`code-review\`." "$implementation" "code-review gate is missing"
-require "Low complexity does not invoke \`code-review\`." "$implementation" "low-complexity review exemption is missing"
-require "Invoke \`code-review\` after verification and before Summary Change." "$implementation" "code-review ordering is missing"
-require "Return to Summary Change and report that code review was unavailable." "$implementation" "placeholder review does not return to summary"
+require "**REQUIRED SUB-SKILL:** Use \`review-code\`." "$implementation" "review-code gate is missing"
+require "Low complexity does not invoke \`review-code\`." "$implementation" "low-complexity review exemption is missing"
+require "Invoke \`review-code\` after verification and before Summary Change." "$implementation" "review-code ordering is missing"
 require "Modify only files related to the requested task." "$implementation" "task-related file scope rule is missing"
 require "Do not fix unrelated errors or potential bugs." "$implementation" "unrelated issue edit prohibition is missing"
 require "Unrelated Issues" "$implementation" "unrelated issue summary note is missing"
 require "## Summary Change" "$implementation" "change summary is missing"
-require "name: code-review" "$code_review" "code-review placeholder name is missing"
-require "Not implemented yet." "$code_review" "code-review placeholder status is missing"
+require "name: review-code" "$review_code" "review-code skill name is missing"
 require "Route to \`skills/implementation/skill.md\`." "$router" "router implementation handoff is missing"
 require "Selected Workflow: [workflow name]" "$router" "selected workflow screen output is missing"
 require "Reason: [one short sentence explaining why this workflow fits]" "$router" "workflow selection reason is missing"
@@ -71,5 +69,11 @@ reject "Placeholder for a future implementation workflow skill." "$implementatio
 reject "## Responsibilities" "$implementation" "duplicated responsibilities section remains"
 reject "## Checklist" "$implementation" "duplicated checklist section remains"
 reject "## Process Flow" "$implementation" "duplicated process diagram remains"
+reject "code-review" "$implementation" "stale code-review reference remains"
+
+if [[ -e "skills/code-review/skill.md" ]]; then
+  printf 'FAIL: obsolete code-review skill still exists\n' >&2
+  exit 1
+fi
 
 printf 'PASS: implementation skill contract\n'

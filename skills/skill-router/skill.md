@@ -8,7 +8,7 @@ description: Use to explore context, analyze the task, ask clarifying questions 
 Analyze the request and route execution. `skill-router` is the orchestration layer.
 
 <HARD-GATE>
-Do NOT invoke a workflow skill, write code, perform a review, debug a failure, or provide the final answer until task analysis is complete and a workflow has been selected.
+Do NOT invoke a workflow skill, write code, perform a review, debug a failure, or provide the final answer until task analysis is complete, and a workflow has been selected.
 </HARD-GATE>
 
 Anti-Pattern: do not assume the solution before understanding the task. Simple tasks may proceed directly; moderate tasks may need clarification; complex or high-risk tasks should use a design-oriented workflow.
@@ -51,7 +51,13 @@ Risk is about consequence:
 
 Missing Information: separate into Blocking (cannot route without it) and Non-blocking (can proceed with a stated assumption). Ask only for blocking information.
 
-**Confirm Understanding:** Before routing, say back what the user wants, the important constraints, and any assumptions. Keep this to 2-3 short sentences.
+**Confirm Understanding:** Before routing, print a separate, clearly visible paragraph using this exact format:
+
+```text
+Comfirm Understanding: [what the user wants, the important constraints, and any assumptions]
+```
+
+Keep the confirmation to 2-3 short sentences focused on the requested outcome and constraints, not the implementation approach. Never omit it, merge it into Task Analysis, or place it after `Selected Workflow`.
 
 ## Workflow Selection
 

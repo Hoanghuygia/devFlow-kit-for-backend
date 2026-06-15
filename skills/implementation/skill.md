@@ -36,7 +36,7 @@ After completing exactly one complexity path:
 3. Update all affected specifications before completion.
 4. Record genuine non-blocking uncertainty when present.
 5. Verify with fresh project-appropriate checks.
-6. For medium and high complexity, invoke `code-review`.
+6. For medium and high complexity, invoke `review-code`.
 7. Write Summary Change.
 
 Modify only files related to the requested task. Do not fix unrelated errors or potential bugs. Record them under Unrelated Issues in Summary Change.
@@ -45,7 +45,7 @@ Modify only files related to the requested task. Do not fix unrelated errors or 
 
 - Proceed directly to implementation.
 - Do not require a separate design proposal, written spec, implementation plan, or worktree.
-- Low complexity does not invoke `code-review`.
+- Low complexity does not invoke `review-code`.
 
 ## Medium Complexity
 
@@ -70,7 +70,7 @@ Do not create a worktree by default for medium complexity. An explicit user or r
 10. Execute Common Execution.
 
 Only the high-complexity path invokes `using-git-worktrees` by default.
-Invoke `code-review` after verification and before Summary Change.
+Must invoke `review-code` after verification and before Summary Change.
 
 ## Design Approval
 
@@ -163,7 +163,11 @@ Inspection alone is not verification. Do not claim success from expected results
 
 Medium- and high-complexity work requires review after verification and before Summary Change.
 
-**REQUIRED SUB-SKILL:** Use `code-review`.
+**REQUIRED SUB-SKILL:** Use `review-code`.
+
+Resolve blocking review findings before Summary Change. Report non-blocking
+findings, spec discrepancies, and open questions without silently changing code
+or specifications outside the approved implementation scope.
 
 ## Summary Change
 
@@ -189,5 +193,5 @@ Stop when:
 - A behavior-changing test was not observed failing before implementation
 - Blocking uncertainty is being hidden in an implementation note
 - Completion is about to be claimed without fresh verification
-- Medium- or high-complexity work reached Summary Change without invoking `code-review`
+- Medium- or high-complexity work reached Summary Change without invoking `review-code`
 - An unrelated error or potential bug is being modified instead of reported
